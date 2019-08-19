@@ -89,4 +89,4 @@ scala's static typing is inferred so users do not always need to declare types f
 The compiler can coerce types when they make sense. 
 
 
-
+What is a REPL?,Read-eval-print- loop. The language shell. Interactive environment for working with a language.
