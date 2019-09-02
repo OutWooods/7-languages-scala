@@ -10,7 +10,7 @@ class ResultChecker(board: List[List[String]]) {
       var oWins: Boolean = false
 
       def result() {
-            anyWinner()
+            checkRows()
             checkCols()
             if(xWins) {
                   println("X wins")
@@ -26,7 +26,7 @@ class ResultChecker(board: List[List[String]]) {
       }
 
 
-       def anyWinner() {
+       def checkRows() {
              board.foreach { row =>
                  if (row.forall(str => str == "X")) {
                        xWins = true
