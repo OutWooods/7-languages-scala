@@ -14,6 +14,7 @@ class ResultChecker(board: List[List[String]]) {
             checkCols()
             checkDownWardDiag()
             checkUpwardDiag()
+
             if(xWins) {
                   println("X wins")
                   return;
@@ -29,51 +30,35 @@ class ResultChecker(board: List[List[String]]) {
 
 
        def checkRows() {
-             board.foreach { row =>
-                 if (row.forall(str => str == "X")) {
-                       xWins = true
-                 }
-
-                 if (row.forall(str => str == "O")) {
-                       oWins = true
-                 }
-            }
+             board.foreach(row => checkWinningSet(row))
        }
 
        def checkCols() {
              for(col <- 0 until board.length) {
                    val column = board.map(row => row(col))
 
-                 if (column.forall(str => str == "X")) {
-                       xWins = true
-                 }
-
-                 if (column.forall(str => str == "O")) {
-                       oWins = true
-                 }
+                   checkWinningSet(column)
             }
        }
 
        def checkDownWardDiag() {
              val downward  = board.zipWithIndex.map{ case(row, index) => row(index)}
 
-                 if (downward.forall(str => str == "X")) {
-                       xWins = true
-                 }
-
-                 if (downward.forall(str => str == "O")) {
-                       oWins = true
-                 }
+             checkWinningSet(downward)
        }
 
        def checkUpwardDiag() {
              val upward  = board.zipWithIndex.map{ case(row, index) => row(board.length - index - 1)}
 
-                 if (upward.forall(str => str == "X")) {
+             checkWinningSet(upward)
+       }
+
+       def checkWinningSet(set: List[String]) {
+                 if (set.forall(str => str == "X")) {
                        xWins = true
                  }
 
-                 if (upward.forall(str => str == "O")) {
+                 if (set.forall(str => str == "O")) {
                        oWins = true
                  }
        }
