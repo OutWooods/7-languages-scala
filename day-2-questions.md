@@ -48,8 +48,20 @@ val totalLength2 = (0 /: list) {(count, current) => count + current.length}
 println(totalLength)
 println(totalLength2)
 
+// Write a censor trait that will replace the curse words shoot and darn with Pucky and beans alternatives. Use a map to store the curse words and alternatives. (I changed to eghad and flip)
 
-// Write a censor trait that will replace the curse words shoot and dark with Pucky and beans alternatives. Use a map to store the curse words and alternatives.
+// Write a censor trait that will replace the curse words shoot and darn with Pucky and beans alternatives. Use a map to store the curse words and alternatives. (I changed to eghad and flip)
+
+val curse = Map("shoot" -> "eghad", "darn" -> "flip")
+
+val testPhrase = "This is a darn complex sentence. Shoot!"
+
+val censor = testPhrase
+                 .split(" ")
+                 .map(word => if(curse.contains(word)) curse(word) else word)
+                 .mkString(" ")
+
+println(censor)
 
 // Load the curse words and alternatives from a file
 
