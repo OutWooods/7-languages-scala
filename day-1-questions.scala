@@ -12,6 +12,8 @@ class ResultChecker(board: List[List[String]]) {
       def result() {
             checkRows()
             checkCols()
+            checkDownWardDiag()
+            checkUpwardDiag()
             if(xWins) {
                   println("X wins")
                   return;
@@ -46,13 +48,41 @@ class ResultChecker(board: List[List[String]]) {
                        xWins = true
                  }
 
-                 if (column.forall(str => str == "1")) {
+                 if (column.forall(str => str == "O")) {
                        oWins = true
                  }
             }
        }
+
+       def checkDownWardDiag() {
+             val downward  = board.zipWithIndex.map{ case(row, index) => row(index)}
+
+                 if (downward.forall(str => str == "X")) {
+                       xWins = true
+                 }
+
+                 if (downward.forall(str => str == "O")) {
+                       oWins = true
+                 }
+       }
+
+       def checkUpwardDiag() {
+             val upward  = board.zipWithIndex.map{ case(row, index) => row(board.length - index - 1)}
+
+                 if (upward.forall(str => str == "X")) {
+                       xWins = true
+                 }
+
+                 if (upward.forall(str => str == "O")) {
+                       oWins = true
+                 }
+       }
 }
 
-val board = new ResultChecker(List(List("X", "X", "O"), List("X", "1", "2"), List("X", "1", "2")))
-board.result()
+val xWins = new ResultChecker(List(List("X", "X", "O"), List("O", "X", "2"), List("O", "1", "X")))
+xWins.result()
+val nobodyWins = new ResultChecker(List(List("X", "X", ""), List("O", "O", "2"), List("O", "1", "X")))
+nobodyWins.result()
+val oWins = new ResultChecker(List(List("X", "X", "O"), List("O", "O", "2"), List("O", "1", "X")))
+oWins.result()
 
