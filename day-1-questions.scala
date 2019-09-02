@@ -6,8 +6,8 @@
 // This is more about learning syntax so I won't be spending ages making it perfect
 
 class ResultChecker(board: List[List[String]]) {
-      var xWins: Boolean = false
-      var oWins: Boolean = false
+      var xWins = false
+      var oWins = false
 
       def result() {
             checkRows()
@@ -17,7 +17,7 @@ class ResultChecker(board: List[List[String]]) {
 
             if(xWins) {
                   println("X wins")
-                  return;
+                  return
             }
 
             if(oWins) {
