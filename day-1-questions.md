@@ -37,4 +37,6 @@
 
 // Write a game that will take a tic-tac-toe board with X, O and blank characters and detec the winner or whthere there is a tie or no winner yet. Use classes where appropriate
 
+(See the day-one-questions.scala)
+
 // Let two players play tic tac toe
