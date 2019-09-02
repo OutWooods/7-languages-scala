@@ -5,14 +5,13 @@
 // Assuming the board given is correct and valid, there are 3 outcomes. No result, X win, O win.
 // This is more about learning syntax so I won't be spending ages making it perfect
 
-println("Hello all!")
-
 class ResultChecker(board: List[List[String]]) {
       var xWins: Boolean = false
       var oWins: Boolean = false
 
       def result() {
             anyWinner()
+            checkCols()
             if(xWins) {
                   println("X wins")
                   return;
@@ -29,17 +28,31 @@ class ResultChecker(board: List[List[String]]) {
 
        def anyWinner() {
              board.foreach { row =>
-                 if (row.forall(str => str == "1") & row(1) == "X") {
+                 if (row.forall(str => str == "X")) {
                        xWins = true
                  }
 
-                 if (row.forall(str => str == "1") & row(1) == "X") {
+                 if (row.forall(str => str == "O")) {
+                       oWins = true
+                 }
+            }
+       }
+
+       def checkCols() {
+             for(col <- 0 until board.length) {
+                   val column = board.map(row => row(col))
+
+                 if (column.forall(str => str == "X")) {
+                       xWins = true
+                 }
+
+                 if (column.forall(str => str == "1")) {
                        oWins = true
                  }
             }
        }
 }
 
-val board = new ResultChecker(List(List("X", "X", "X"), List("1", "1", "2")))
+val board = new ResultChecker(List(List("X", "X", "O"), List("X", "1", "2"), List("X", "1", "2")))
 board.result()
 
