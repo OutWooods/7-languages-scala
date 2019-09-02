@@ -54,7 +54,7 @@ println(totalLength2)
 
 val curse = Map("shoot" -> "eghad", "darn" -> "flip")
 
-val testPhrase = "This is a darn complex sentence. Shoot!"
+val testPhrase = "This is a darn complex sentence. shoot it!"
 
 val censor = testPhrase
                  .split(" ")
@@ -64,4 +64,27 @@ val censor = testPhrase
 println(censor)
 
 // Load the curse words and alternatives from a file
+import scala.io.Source
+
+val curseWordsFile = Source.fromFile("curseWords.txt")
+val messageFile = Source.fromFile("message.txt")
+
+val curses = collection.mutable.Map[String, String]()
+
+curseWordsFile.getLines.foreach({ line =>
+    val points = line.split(",")
+    curses += points(0) -> points(1)
+})
+
+val message = messageFile.mkString
+
+val censor = message
+                 .split(" ")
+                 .map(word => if(curses.contains(word)) curses(word) else word)
+                 .mkString(" ")
+
+curseWordsFile.close
+messageFile.close
+
+println(censor)
 
