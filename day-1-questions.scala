@@ -12,8 +12,8 @@ class ResultChecker(board: List[List[String]]) {
       def result() {
             checkRows()
             checkCols()
-            checkDownWardDiag()
-            checkUpwardDiag()
+            checkDownWardDiagonal()
+            checkUpwardDiagonal()
 
             if(xWins) {
                   println("X wins")
@@ -41,13 +41,13 @@ class ResultChecker(board: List[List[String]]) {
             }
        }
 
-       def checkDownWardDiag() {
+       def checkDownWardDiagonal() {
              val downward  = board.zipWithIndex.map{ case(row, index) => row(index)}
 
              checkWinningSet(downward)
        }
 
-       def checkUpwardDiag() {
+       def checkUpwardDiagonal() {
              val upward  = board.zipWithIndex.map{ case(row, index) => row(board.length - index - 1)}
 
              checkWinningSet(upward)
